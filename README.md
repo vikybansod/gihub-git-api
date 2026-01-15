@@ -6,16 +6,17 @@ The service is containerized using Docker, uses Gunicorn for production serving,
 Note: As a Infrastructure Consultant/Devops Engineer, I have taken the hepl of Gen AI to write down the test cases.
 
 🚀 Features
-	•	HTTP API to fetch public GitHub gists
-	•	Endpoint format: GET /<username>
-	•	Uses GitHub public REST API
-	•	Built with Flask
-	•	Served via Gunicorn
-	•	Automated tests using pytest
-	•	Multi-stage Docker build
-	•	Runs as a non-root user
-	•	Exposes port 8080
-	•	Docker HEALTHCHECK enabled
+• HTTP API to fetch public GitHub gists
+• Endpoint format: GET /<username>
+• Uses GitHub public REST API
+• Built with Flask
+• Served via Gunicorn
+• Automated tests using pytest
+• Multi-stage Docker build
+• Runs as a non-root user
+• Exposes port 8080
+• Docker HEALTHCHECK enabled
+
 
 Project Structure
 .
@@ -28,16 +29,16 @@ Project Structure
 
 🐳 Docker
 Build the Docker image
-	•	docker build -t github-gists-api .
+• docker build -t github-gists-api .
 
 Run the container (background mode)
-	•	docker run -p 8080:8080 --rm --name gists-api github-gists-api
+• docker run -p 8080:8080 --rm --name gists-api github-gists-api
 
 Verify the service
-	•	curl http://localhost:8080/
-	•	curl http://localhost:8080/octocat
+• curl http://localhost:8080/
+• curl http://localhost:8080/octocat
 
 
 📌 Requirements
-	•	Docker
-	•	Internet access (for GitHub API calls)
+• Docker
+• Internet access (for GitHub API calls)
