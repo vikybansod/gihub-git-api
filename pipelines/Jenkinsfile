@@ -2,12 +2,7 @@
 
 pipeline {
 
-    agent {
-        kubernetes {
-            label 'infra-agent'
-            defaultContainer 'infra'
-        }
-    }
+    agent any
 
     environment {
         ENV = 'uat'
@@ -19,24 +14,10 @@ pipeline {
             steps {
                 container('infra') {
                     script {
-                        def cfg = envConfig(env.ENV)
-                        cfg.each { k, v ->
-                            env."${k}" = v
+                        echo "testing"
                         }
                     }
                 }
             }
         }
-
-        stage('Verify Vars') {
-            steps {
-                container('infra') {
-                    sh '''
-                        echo "AWS_REGION=$AWS_REGION"
-                        echo "CLUSTER=$CLUSTER"
-                    '''
-                }
-            }
-        }
-    }
 }
