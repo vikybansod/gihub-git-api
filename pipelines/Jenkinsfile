@@ -2,7 +2,12 @@
 
 pipeline {
 
-    agent any
+    agent {
+        docker {
+            image 'docker:24.0.7-dind' // Specific DinD image
+            args '--privileged'        // Required for DinD to run the daemon
+        }
+    }
 
     environment {
         ENV = 'uat'
@@ -14,7 +19,7 @@ pipeline {
             steps {
                 container('infra') {
                     script {
-                        echo "testing"
+                        ls -al && pwd && docker -v
                         }
                     }
                 }
