@@ -3,7 +3,7 @@
 pipeline {
 
     agent {
-        docker {
+        kubernetes {
             image 'docker:24.0.7-dind' // Specific DinD image
             args '--privileged'        // Required for DinD to run the daemon
         }
