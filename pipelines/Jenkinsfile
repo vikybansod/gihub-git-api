@@ -4,19 +4,16 @@ pipeline {
 
     agent any
     
-
-    environment {
-        ENV = 'uat'
-    }
-
     stages {
-
-        stage('Load Config') {
+        stage('Build') {
             steps {
-                 
-                    ls -al && pwd && docker -v
-                    
-                }
+                echo 'Building..' 
             }
         }
+        stage('docker') {
+            steps {
+                docker -v
+            }
+        }
+    }
 }
