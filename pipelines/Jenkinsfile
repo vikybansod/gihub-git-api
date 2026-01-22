@@ -1,0 +1,42 @@
+@Library('jenkins-shared-lib') _
+
+pipeline {
+
+    agent {
+        kubernetes {
+            label 'infra-agent'
+            defaultContainer 'infra'
+        }
+    }
+
+    environment {
+        ENV = 'uat'
+    }
+
+    stages {
+
+        stage('Load Config') {
+            steps {
+                container('infra') {
+                    script {
+                        def cfg = envConfig(env.ENV)
+                        cfg.each { k, v ->
+                            env."${k}" = v
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Verify Vars') {
+            steps {
+                container('infra') {
+                    sh '''
+                        echo "AWS_REGION=$AWS_REGION"
+                        echo "CLUSTER=$CLUSTER"
+                    '''
+                }
+            }
+        }
+    }
+}
