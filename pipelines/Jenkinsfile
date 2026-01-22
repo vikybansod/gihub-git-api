@@ -13,11 +13,9 @@ pipeline {
 
         stage('Load Config') {
             steps {
-                container('infra') {
-                    script {
-                        ls -al && pwd && docker -v
-                        }
-                    }
+                 
+                    ls -al && pwd && docker -v
+                    
                 }
             }
         }
